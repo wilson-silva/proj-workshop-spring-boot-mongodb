@@ -18,10 +18,15 @@ public class PostService {
 	private PostRepository repository;
 
 	public Post findById(String id) {
+
 		return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 
+//	public List<Post> findByTitle(String text){
+//		return repository.findByTitleContainingIgnoreCase(text);
+//	}
+
 	public List<Post> findByTitle(String text){
-		return repository.findByTitleContainingIgnoreCase(text);
+		return repository.searchTitle(text);
 	}
 }
